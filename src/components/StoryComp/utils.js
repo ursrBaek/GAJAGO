@@ -4,6 +4,23 @@ const db = getDatabase();
 
 const limit = 15;
 
+export const getUsersInfo = async () => {
+  try {
+    let userInfo;
+    await get(ref(db, `userList`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        userInfo = snapshot.val();
+      } else {
+        console.log('No userList data.');
+      }
+    });
+
+    return userInfo;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const getFirstBatch = async (sortBy, searchUid) => {
   try {
     const posts = [];
@@ -65,4 +82,23 @@ export const getNextBatch = async (sortBy, searchUid, lastSortedValue, lastKey) 
   } catch (e) {
     console.log(e);
   }
+};
+
+export const separatePostsByColumn = (posts) => {
+  const fstColumnPost = [];
+  const sndColumnPost = [];
+  const trdColumnPost = [];
+
+  posts.forEach((post, idx) => {
+    post.num = idx;
+    if (idx === 0 || idx % 3 === 0) {
+      fstColumnPost.push(post);
+    } else if (idx % 3 === 1) {
+      sndColumnPost.push(post);
+    } else if (idx % 3 === 2) {
+      trdColumnPost.push(post);
+    }
+  });
+
+  return [fstColumnPost, sndColumnPost, trdColumnPost];
 };
