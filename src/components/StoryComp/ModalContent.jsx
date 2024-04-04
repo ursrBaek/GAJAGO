@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CameraOutlined, EnvironmentOutlined, HeartOutlined, CalendarOutlined, HeartFilled } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
-import { getDatabase, ref, update } from 'firebase/database';
+import { getDatabase, ref, update, increment } from 'firebase/database';
 import Scrollbars from 'react-custom-scrollbars-2';
 import { REGION_NAME } from '../../common';
 
@@ -26,12 +26,12 @@ function ModalContent({ postInfo, usersInfo, myCheckedLikesObj, tempLikes, editT
 
         if (isChecked) {
           updates[`users/${uid}/checkedLikes/${key}`] = null;
-          updates[`reviews/public/${key}/likes`] = tempLikes === 0 ? 0 : tempLikes - 1;
-          updates[`reviews/user/${postUid}/public/${key}/likes`] = tempLikes === 0 ? 0 : tempLikes - 1;
+          updates[`reviews/public/${key}/likes`] = increment(-1);
+          updates[`reviews/user/${postUid}/public/${key}/likes`] = increment(-1);
         } else {
           updates[`users/${uid}/checkedLikes/${postInfo.key}`] = true;
-          updates[`reviews/public/${key}/likes`] = tempLikes + 1;
-          updates[`reviews/user/${postUid}/public/${key}/likes`] = tempLikes + 1;
+          updates[`reviews/public/${key}/likes`] = increment(1);
+          updates[`reviews/user/${postUid}/public/${key}/likes`] = increment(1);
         }
         await update(ref(db), updates);
         if (isChecked) {
@@ -44,7 +44,7 @@ function ModalContent({ postInfo, usersInfo, myCheckedLikesObj, tempLikes, editT
         console.log(error);
       }
     },
-    [uid, editTempLikes, tempLikes],
+    [uid, editTempLikes],
   );
 
   return (
