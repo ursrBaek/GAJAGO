@@ -1,25 +1,21 @@
-// import loadable from '@loadable/component';
+import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
-import './firebase';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
-import MainPage from './pages/MainPage';
-import LogInPage from './pages/LogInPage';
-import SignUpPage from './pages/SignUpPage';
-import MyTripsPage from './pages/MyTripsPage';
-import ReviewsPage from './pages/ReviewsPage';
-import StoryPage from './pages/StoryPage';
-
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUser, setPublicReviewCount, setTrophyInfo, setUser } from './redux/actions/user_action';
 import { countPublicReview, createScheduleInfo, createTrophyInfoObj, getPlanData } from './components/Schedule/utils';
 import { Background } from './components/MainTemplate/styles';
-import { LoadingOutlined } from '@ant-design/icons';
 import { setScheduleInfo } from './redux/actions/scheduleInfo_action';
 
-// const LogInPage = loadable(() => import('./pages/LogInPage'));
-// const SignUpPage = loadable(() => import('./pages/SignUpPage'));
+import './firebase';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
+const MainPage = lazy(() => import('./pages/MainPage'));
+const LogInPage = lazy(() => import('./pages/LogInPage'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage'));
+const MyTripsPage = lazy(() => import('./pages/MyTripsPage'));
+const ReviewsPage = lazy(() => import('./pages/ReviewsPage'));
+const StoryPage = lazy(() => import('./pages/StoryPage'));
 
 function App() {
   const isLoading = useSelector((state) => state.user.isLoading);
@@ -66,20 +62,26 @@ function App() {
 
   return isLoading ? (
     <Background>
-      <div className="loading">
-        loading.. <LoadingOutlined />
-      </div>
+      <div className="loading">loading..</div>
     </Background>
   ) : (
-    <Routes>
-      <Route path="/" element={<Navigate replace to="/schedule" />} />
-      <Route path="/schedule" element={<MainPage />} />
-      <Route path="/login" element={<LogInPage />} />
-      <Route path="/signup" element={<SignUpPage />} />
-      <Route path="/myTrips" element={<MyTripsPage />} />
-      <Route path="/reviews" element={<ReviewsPage />} />
-      <Route path="/story" element={<StoryPage />} />
-    </Routes>
+    <Suspense
+      fallback={
+        <Background>
+          <div className="loading">loading..</div>
+        </Background>
+      }
+    >
+      <Routes>
+        <Route path="/" element={<Navigate replace to="/schedule" />} />
+        <Route path="/schedule" element={<MainPage />} />
+        <Route path="/login" element={<LogInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/myTrips" element={<MyTripsPage />} />
+        <Route path="/reviews" element={<ReviewsPage />} />
+        <Route path="/story" element={<StoryPage />} />
+      </Routes>
+    </Suspense>
   );
 }
 

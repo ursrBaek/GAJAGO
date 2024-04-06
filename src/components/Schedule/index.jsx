@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useEffect, useState } from 'react';
+import React, { Suspense, forwardRef, lazy, useCallback, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import weekday from 'dayjs/plugin/weekday';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -9,11 +9,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { StyledCalendar } from './styles';
-import ScheduleModal from './ScheduleModal';
 import MarkingBar from './MarkingBar';
 
 import { useSelector } from 'react-redux';
 import { filterPlansOfMonth, getFirstDateAndLastDateOfCalendar, makeMarkingInfoObj } from './utils';
+
+const ScheduleModal = lazy(() => import('./ScheduleModal'));
 
 // dayjs extend
 dayjs.extend(weekday);
@@ -139,12 +140,16 @@ const Calendar = () => {
         </div>
         {renderCalendar(date)}
       </div>
-      <ScheduleModal
-        showModal={showModal}
-        handleClose={handleCloseModal}
-        modalPlanData={markingInfo[modalInfo.date]}
-        setModalInfo={setModalInfo}
-      />
+      <Suspense fallback={null}>
+        {showModal && (
+          <ScheduleModal
+            showModal={showModal}
+            handleClose={handleCloseModal}
+            modalPlanData={markingInfo[modalInfo.date]}
+            setModalInfo={setModalInfo}
+          />
+        )}
+      </Suspense>
     </StyledCalendar>
   );
 };
