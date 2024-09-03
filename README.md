@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# ✈️ 여행기록 웹 애플리케이션 - GAJAGO
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
+여행 일정과 여행후기를 등록하고 수정, 삭제 등의 관리를 할 수 있는 웹 애플리케이션 가자고(GAJAGO)입니다.<br>
+사진이 첨부된 후기는 공개 여부를 선택하여 여러 사용자들이 볼 수 있는 Story 페이지에 공유할 수 있습니다.<br>
+Story 페이지는 여러 사용자들의 여행후기가 게시되며 마음에 드는 다른 사용자의 후기에 좋아요를 표시할 수 있습니다.<br>
 
-## Available Scripts
+<br>
 
-In the project directory, you can run:
+<img src="/thumbnail.gif" width="800" height="480"/>
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🏈 사이트 보러가기
 
-### `npm test`
+🎬 [프로젝트 YouTube 영상](https://youtu.be/aaYRzWyWM3c?si=1YFzoKOCIgBNarue)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+🧑‍💻 [가자고(GAJAGO) 사이트 방문하기](https://gajago-8be7d.web.app)
 
-### `npm run build`
+<br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🎒 기술 스택
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- HTML
+- CSS
+- JavaScript
+- React
+- Redux
+- Emotion
+- firebase
 
-### `npm run eject`
+<br>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🚀 주요 기능 및 구현 내용
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1. Scheduler 페이지
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Calendar 구현
+- 여행 일정 등록, 수정, 삭제
+- 여행 일정 마킹 바 표시
+- 마킹 바 클릭시 일정 상세 모달창 open
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 2. My Trips 페이지
 
-## Learn More
+- 최근 다녀온 여행, 다음 여행 표시
+- 지난 여행, 여행 예정 일정 리스트 지역별 표시
+- 지도 컴포넌트(도, 특별시, 광역시 기준 구분)
+  - 각 구역별 다녀온 여행 횟수에 따른 색상 적용
+  - 지도의 특정 구역 클릭시 해당 구역의 여행 리스트 표시
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 3. Review 페이지
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 리뷰 등록, 수정, 삭제
+- 사진 등록 전 이미지 리사이징
+- 지역별 리뷰 조회
 
-### Code Splitting
+### 4. Story 페이지
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 공개 설정된 전체 사용자의 여행후기 조회
+- 최신순, 좋아요순 정렬
+- 무한 스크롤
+- Masonry 레이아웃
+- 좋아요 기능
+- 사용자 닉네임 검색
+- 사용자별 여행후기 조회
+- 여행 후기 수 기준 사용자 랭킹 목록
 
-### Analyzing the Bundle Size
+### 5. 기타 기능
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+-  프로필 사진 변경
+  - 사진 업로드 전 이미지 리사이징
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br>
