@@ -7,7 +7,7 @@ Story 페이지는 여러 사용자들의 여행후기가 게시되며 마음에
 
 <br>
 
-<img src="/thumbnail.gif" width="800" height="480"/>
+<img src="/thumbnail.gif" width="800" height="500"/>
 
 
 
